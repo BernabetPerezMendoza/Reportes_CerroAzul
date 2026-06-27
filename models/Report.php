@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Database;
 
 require_once __DIR__ . '/../config/Database.php';
 

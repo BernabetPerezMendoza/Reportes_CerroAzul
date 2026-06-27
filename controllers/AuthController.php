@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use User;
+
 
 require_once __DIR__ . '/../models/User.php';
 
