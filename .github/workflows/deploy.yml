@@ -6,7 +6,7 @@ on:
 
 jobs:
   web-deploy:
-    name: Subiendo archivos al Hosting
+    name: Subiendo nuevos requerimientos al Hosting
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Obtener código del repositorio
