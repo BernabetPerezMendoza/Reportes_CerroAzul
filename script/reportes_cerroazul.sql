@@ -1,0 +1,33 @@
+-- USERS
+CREATE TABLE users (
+    id_user INT AUTO_INCREMENT PRIMARY KEY,
+    dni_user VARCHAR(8) NOT NULL UNIQUE,
+    name_user VARCHAR(100) NOT NULL,
+    father_surname_user VARCHAR(50) NOT NULL,
+    mother_surname_user VARCHAR(50) NOT NULL,
+    username_user VARCHAR(50) NOT NULL UNIQUE,
+    password_user VARCHAR(255) NOT NULL,
+    rol_user INT DEFAULT 2, -- 1: ADMIN, 2: CIUDADANO --
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- REPORTS
+CREATE TABLE reports (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    descripcion TEXT NOT NULL,
+    foto VARCHAR(255) NOT NULL,
+    estado ENUM('PENDIENTE', 'REVISADO') DEFAULT 'PENDIENTE',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id_user) ON DELETE CASCADE
+);
+
+-- NOTIFICATIONS
+CREATE TABLE notifications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    mensaje TEXT NOT NULL,
+    leido TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id_user) ON DELETE CASCADE
+);

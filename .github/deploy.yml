@@ -1,0 +1,22 @@
+name: Despliegue - Reportes Cerro Azul
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: Subiendo archivos al Hosting
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Obtener código del repositorio
+        uses: actions/checkout@v3
+
+      - name: 🚀 Sincronizar vía FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: htdocs/
+          dangerous-clean-slate: false
