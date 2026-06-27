@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 
 // Definimos los archivos que tu proyecto necesita para arrancar
 $archivos_criticos = [
-    'Configuración' => __DIR__ . '/config/config.php',
+    'Configuración' => __DIR__ . '/config/Config.php',
     'Controlador de Autenticación' => __DIR__ . '/controllers/AuthController.php',
     'Modelo de Reportes' => __DIR__ . '/models/Report.php'
 ];
