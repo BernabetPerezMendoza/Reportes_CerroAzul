@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use AuthController;
 use Report;
+use User;
+use Database;
 
 require_once __DIR__ . '/config/Config.php';
 require_once __DIR__ . '/controllers/AuthController.php';
@@ -56,6 +58,11 @@ switch ($action) {
         $reportModel = new Report();
         $stats = $reportModel->obtenerEstadisticas();
         $reportes = $reportModel->obtenerTodos();
+
+        require_once __DIR__ . '/models/User.php';
+        $userModel = new User();
+        $usuarios = $userModel->obtenerTodos();
+
         require __DIR__ . '/views/admin/dashboard.php';
         break;
 
@@ -105,6 +112,144 @@ switch ($action) {
             $_SESSION['success'] = "El reporte ha sido marcado como REVISADO.";
         }
         header("Location: index.php?action=admin_dashboard");
+        exit;
+
+    case 'admin_crear_usuario':
+        verificarAutenticado();
+        if ($_SESSION['rol'] !== 1) die("Acceso denegado.");
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $dni = trim($_POST['dni'] ?? '');
+            $nombres = trim($_POST['nombres'] ?? '');
+            $paterno = trim($_POST['paterno'] ?? '');
+            $materno = trim($_POST['materno'] ?? '');
+            $username = trim($_POST['username'] ?? '');
+            $password = trim($_POST['password'] ?? '');
+            $rol = (int)($_POST['rol'] ?? 2);
+
+            require_once __DIR__ . '/models/User.php';
+            $userModel = new User();
+            
+            $exito = $userModel->registrar([
+                'dni' => $dni,
+                'name' => $nombres,
+                'father' => $paterno,
+                'mother' => $materno,
+                'username' => $username,
+                'password' => $password,
+                'rol' => $rol
+            ]);
+
+            if ($exito) {
+                $_SESSION['success'] = "Usuario ($nombres) creado correctamente.";
+            } else {
+                $_SESSION['error'] = "Error: El DNI o el Nombre de Usuario ya están registrados.";
+            }
+        }
+        header("Location: index.php?action=admin_dashboard");
+        exit;
+
+    case 'consultar_dni_ajax':
+        verificarAutenticado();
+        header('Content-Type: application/json');
+        
+        $dni = trim($_GET['dni'] ?? '');
+        if (strlen($dni) === 8) {
+            require_once __DIR__ . '/models/User.php';
+            $datosDni = User::consultarDni($dni);
+            
+            if ($datosDni) {
+                echo json_encode(['success' => true, 'data' => $datosDni]);
+                exit;
+            }
+        }
+        echo json_encode(['success' => false, 'message' => 'DNI no encontrado o no válido.']);
+        exit;
+
+    case 'verificar_username_ajax':
+        verificarAutenticado();
+        header('Content-Type: application/json');
+        
+        $username = trim($_GET['username'] ?? '');
+        if (strlen($username) > 0) {
+            require_once __DIR__ . '/models/User.php';
+            $userModel = new User();
+            $existe = $userModel->existeUsername($username);
+            echo json_encode(['existe' => $existe]);
+            exit;
+        }
+        echo json_encode(['existe' => false]);
+        exit;
+
+    case 'verificar_dni_existente':
+        verificarAutenticado();
+        header('Content-Type: application/json');
+        
+        $dni = trim($_GET['dni'] ?? '');
+        if (strlen($dni) === 8) {
+            require_once __DIR__ . '/models/User.php';
+            $userModel = new User();
+            $existe = $userModel->existeDni($dni);
+            echo json_encode(['existe' => $existe]);
+            exit;
+        }
+        echo json_encode(['existe' => false]);
+        exit;
+
+    case 'ciudadano_perfil':
+        verificarAutenticado();
+        
+        require_once __DIR__ . '/models/User.php';
+        $userModel = new User();
+
+        $idSesion = (int)$_SESSION['user_id'];
+        $usuario = $userModel->obtenerPorId($idSesion);
+
+        if (!$usuario) {
+            die("Error crítico: El sistema intentó buscar al usuario con el ID: " . $idSesion . ", pero la tabla 'users' dijo que no existe.");
+        }
+
+        require_once __DIR__ . '/views/ciudadano/perfil.php';
+        break;
+
+    case 'actualizar_perfil':
+        verificarAutenticado();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userId = (int)$_SESSION['user_id'];
+            $nuevoUsername = trim($_POST['username'] ?? '');
+            $nuevaPassword = trim($_POST['password'] ?? '');
+
+            require_once __DIR__ . '/models/User.php';
+            $userModel = new User();
+
+            $actualizado = false;
+
+            if ($nuevoUsername !== $_SESSION['username']) {
+                if ($userModel->existeUsername($nuevoUsername)) {
+                    $_SESSION['error'] = "El nombre de usuario '$nuevoUsername' ya está en uso.";
+                    header("Location: index.php?action=ciudadano_perfil");
+                    exit;
+                }
+                $userModel->actualizarUsername($userId, $nuevoUsername);
+                $_SESSION['username'] = $nuevoUsername;
+                $actualizado = true;
+            }
+
+            if (!empty($nuevaPassword)) {
+                $conn = (new Database())->getConnection();
+                $hashedPassword = password_hash($nuevaPassword, PASSWORD_BCRYPT);
+                $stmt = $conn->prepare("UPDATE users SET password_user = :password WHERE id_user = :id");
+                $stmt->execute([':password' => $hashedPassword, ':id' => $userId]);
+                $actualizado = true;
+            }
+
+            if ($actualizado) {
+                $_SESSION['success'] = "Tus credenciales de acceso han sido actualizados correctamente.";
+            } else {
+                $_SESSION['info'] = "No se detectaron cambios para guardar.";
+            }
+        }
+        header("Location: index.php?action=ciudadano_perfil");
         exit;
 
     default:

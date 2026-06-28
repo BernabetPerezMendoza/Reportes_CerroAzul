@@ -76,4 +76,40 @@ class User {
         $stmt = $this->conn->prepare($query);
         return $stmt->execute([':username' => $nuevoUsername, ':id' => $id]);
     }
+
+    public function existeUsername(string $username): bool {
+        $query = "SELECT COUNT(*) FROM users WHERE username_user = :username";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([':username' => $username]);
+        return $stmt->fetchColumn() > 0;
+    }
+
+    public function existeDni(string $dni): bool {
+        $query = "SELECT COUNT(*) FROM users WHERE dni_user = :dni";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([':dni' => $dni]);
+        return $stmt->fetchColumn() > 0;
+    }
+
+    public function obtenerTodos(): array {
+        $query = "SELECT id_user, dni_user, name_user, father_surname_user, mother_surname_user, username_user, rol_user, created_at 
+                  FROM users ORDER BY created_at DESC";
+        return $this->conn->query($query)->fetchAll();
+    }
+
+    public function obtenerPorId(int $id): ?array {
+        try {
+            $query = "SELECT * FROM users WHERE id_user = :id LIMIT 1";
+            $stmt = $this->conn->prepare($query);
+            // Forzamos a MySQL a entender que esto es estrictamente un número entero
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $user ?: null;
+        } catch (PDOException $e) {
+            // Si hay un error oculto en MySQL, lo imprimimos
+            die("Error en la Base de Datos: " . $e->getMessage());
+        }
+    }
 }

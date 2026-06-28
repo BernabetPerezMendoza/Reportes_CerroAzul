@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-
+use User;
 
 require_once __DIR__ . '/../models/User.php';
 
@@ -19,7 +19,7 @@ class AuthController {
                 $_SESSION['user_id'] = $user['id_user'];
                 $_SESSION['username'] = $user['username_user'];
                 $_SESSION['rol'] = (int)$user['rol_user'];
-                $_SESSION['nombre'] = $user['name_user'] . ' ' . $user['father_surname_user'];
+                $_SESSION['nombre'] = $user['name_user'] . ' ' . $user['father_surname_user'] . ' ' . $user['mother_surname_user'];
 
                 if ($_SESSION['rol'] === 1) {
                     header("Location: index.php?action=admin_dashboard");

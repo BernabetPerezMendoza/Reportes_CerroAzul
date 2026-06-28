@@ -3,6 +3,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+use Database;
+
 require_once 'config/Database.php';
 
 $database = new Database();
@@ -13,20 +15,18 @@ if (!$db) {
 }
 
 $dni = "12345678";
-$name = "Carlos Edidson";
-$father_surname = "Sanchez";
-$mother_surname = "Alcala";
+$name = "CARLOS EDIDSON";
+$father_surname = "SANCHEZ";
+$mother_surname = "ALCALA";
 $username = "admin";
 $password_clara = "admin123";
 
 $password_hashed = password_hash($password_clara, PASSWORD_BCRYPT);
 
 try {
-    // 1. Limpiamos cualquier residuo previo con el mismo username o DNI
     $delete = $db->prepare("DELETE FROM users WHERE username_user = :username OR dni_user = :dni");
     $delete->execute([':username' => $username, ':dni' => $dni]);
 
-    // 2. Insertamos el usuario con el hash nativo recién calculado
     $query = "INSERT INTO users (dni_user, name_user, father_surname_user, mother_surname_user, username_user, password_user, rol_user) 
               VALUES (:dni, :name, :father, :mother, :username, :password, 1)";
     

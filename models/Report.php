@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Database;
 
 require_once __DIR__ . '/../config/Database.php';
 
@@ -31,7 +32,7 @@ class Report {
     }
 
     public function obtenerTodos(): array {
-        $query = "SELECT r.*, u.name_user, u.father_surname_user, u.username_user 
+        $query = "SELECT r.*, u.name_user, u.father_surname_user, u.mother_surname_user, u.username_user 
                   FROM reports r 
                   JOIN users u ON r.user_id = u.id_user 
                   ORDER BY r.created_at DESC";
