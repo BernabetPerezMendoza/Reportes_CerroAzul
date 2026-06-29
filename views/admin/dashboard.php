@@ -234,16 +234,16 @@ if (!isset($usuarios)) $usuarios = [];
 
                 <div id="campos_nombres" class="hidden space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Nombres Obtenidos</label>
+                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Nombres</label>
                         <input type="text" id="nombres_input" name="nombres" readonly class="w-full bg-transparent text-sm font-bold text-slate-800 outline-none mt-1">
                     </div>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Ap. Paterno</label>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Apellido Paterno</label>
                             <input type="text" id="paterno_input" name="paterno" readonly class="w-full bg-transparent text-sm font-bold text-slate-800 outline-none mt-1">
                         </div>
                         <div>
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Ap. Materno</label>
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Apellido Materno</label>
                             <input type="text" id="materno_input" name="materno" readonly class="w-full bg-transparent text-sm font-bold text-slate-800 outline-none mt-1">
                         </div>
                     </div>
