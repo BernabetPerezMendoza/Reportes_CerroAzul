@@ -234,7 +234,7 @@ if (!isset($usuarios)) $usuarios = [];
 
                 <div id="campos_nombres" class="hidden space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Nombres</label>
+                        <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Nombres Completos</label>
                         <input type="text" id="nombres_input" name="nombres" readonly class="w-full bg-transparent text-sm font-bold text-slate-800 outline-none mt-1">
                     </div>
                     <div class="grid grid-cols-2 gap-2">
