@@ -1,4 +1,4 @@
-<?php require_once dirname(__DIR__, 2) . '/config/config.php'; ?>
+<?php require_once dirname(__DIR__, 2) . '/config/Config.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
