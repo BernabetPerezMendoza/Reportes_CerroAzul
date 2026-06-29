@@ -36,10 +36,15 @@ if (!isset($usuarios)) $usuarios = [];
                     </div>
                     <span class="text-xl font-bold tracking-tight text-white">Admin<span class="text-teal-400">Center</span></span>
                 </div>
-                <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-4 sm:space-x-6">
                     <div class="hidden sm:flex flex-col text-right">
                         <span class="text-sm font-semibold"><?= htmlspecialchars($_SESSION['nombre'] ?? 'Administrador') ?></span>
+                        <span class="text-[10px] text-teal-400 font-medium uppercase tracking-wider">Admin</span>
                     </div>
+                    
+                    <a href="index.php?action=admin_perfil" class="text-sm font-semibold text-teal-400 hover:text-white transition-colors">Mi Perfil</a>
+                    <div class="w-px h-6 bg-slate-700"></div>
+                    
                     <a href="index.php?action=logout" class="flex items-center gap-2 bg-red-500/10 hover:bg-red-500 hover:text-white text-red-400 px-4 py-2 rounded-lg transition-all font-medium text-sm">
                         Salir
                     </a>
@@ -380,7 +385,6 @@ if (!isset($usuarios)) $usuarios = [];
         function cerrarModalImagen() { document.getElementById('modalImagen').classList.add('hidden'); }
         function cerrarModalUsuario() { document.getElementById('modalUsuarioDetalle').classList.add('hidden'); }
 
-        // Modal de Detalles del Reporte con ID incluido
         function verDetalles(foto, descripcion, ciudadano, estado, fecha, idReporte) {
             document.getElementById('m_foto').src = 'public/uploads/' + foto;
             document.getElementById('m_ciudadano').innerText = ciudadano;
@@ -393,7 +397,6 @@ if (!isset($usuarios)) $usuarios = [];
                 ? "px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider mt-2 bg-amber-100 text-amber-700"
                 : "px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider mt-2 bg-emerald-100 text-emerald-700";
 
-            // Asignar funciones a los botones internos del Modal
             document.getElementById('m_btn_foto').onclick = function() { verImagenCompleta(foto); };
             
             const btnAtender = document.getElementById('m_btn_atender');
@@ -407,7 +410,6 @@ if (!isset($usuarios)) $usuarios = [];
             document.getElementById('modalAdmin').classList.remove('hidden');
         }
 
-        // Modal Detalles de Usuario (Solo Móvil)
         function verUsuarioDetalles(dni, nombre, username, rol, fecha) {
             document.getElementById('mu_dni').innerText = dni;
             document.getElementById('mu_nombre').innerText = nombre;

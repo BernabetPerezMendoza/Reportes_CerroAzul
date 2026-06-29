@@ -252,6 +252,63 @@ switch ($action) {
         header("Location: index.php?action=ciudadano_perfil");
         exit;
 
+    case 'admin_perfil':
+        verificarAutenticado();
+        if ($_SESSION['rol'] !== 1) die("Acceso denegado.");
+
+        require_once __DIR__ . '/models/User.php';
+        $userModel = new User();
+        $idSesion = (int)$_SESSION['user_id'];
+        $usuario = $userModel->obtenerPorId($idSesion);
+
+        if (!$usuario) {
+            die("Error crítico: Usuario no encontrado en la base de datos.");
+        }
+
+        require_once __DIR__ . '/views/admin/perfil.php';
+        break;
+
+    case 'actualizar_perfil_admin':
+        verificarAutenticado();
+        if ($_SESSION['rol'] !== 1) die("Acceso denegado.");
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userId = (int)$_SESSION['user_id'];
+            $nuevoUsername = trim($_POST['username'] ?? '');
+            $nuevaPassword = trim($_POST['password'] ?? '');
+
+            require_once __DIR__ . '/models/User.php';
+            $userModel = new User();
+            $actualizado = false;
+
+            if ($nuevoUsername !== $_SESSION['username']) {
+                if ($userModel->existeUsername($nuevoUsername)) {
+                    $_SESSION['error'] = "El nombre de usuario '$nuevoUsername' ya está en uso.";
+                    header("Location: index.php?action=admin_perfil");
+                    exit;
+                }
+                $userModel->actualizarUsername($userId, $nuevoUsername);
+                $_SESSION['username'] = $nuevoUsername; 
+                $actualizado = true;
+            }
+
+            if (!empty($nuevaPassword)) {
+                $db = (new Database())->getConnection();
+                $hash = password_hash($nuevaPassword, PASSWORD_BCRYPT);
+                $stmt = $db->prepare("UPDATE users SET password_user = :pass WHERE id_user = :id");
+                $stmt->execute([':pass' => $hash, ':id' => $userId]);
+                $actualizado = true;
+            }
+
+            if ($actualizado) {
+                $_SESSION['success'] = "Tus credenciales de administrador han sido actualizadas.";
+            } else {
+                $_SESSION['error'] = "No se detectaron cambios para guardar.";
+            }
+        }
+        header("Location: index.php?action=admin_perfil");
+        exit;
+
     default:
         require_once __DIR__ . '/views/auth/login.php';
         break;
