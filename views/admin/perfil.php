@@ -40,7 +40,7 @@ if (!isset($usuario) || !$usuario) {
                     <div class="bg-blue-500/20 p-2 rounded-lg">
                         <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     </div>
-                    <span class="text-xl font-bold tracking-tight text-white">Mi<span class="text-blue-400">Perfil</span></span>
+                    <span class="text-xl font-bold tracking-tight text-white">Mi<span class="text-blue-400"> Perfil</span></span>
                 </div>
                 <div class="flex items-center space-x-4">
                     <a href="index.php?action=admin_dashboard" class="text-sm font-semibold text-blue-200 hover:text-white transition-colors">Volver al Panel</a>

@@ -15,9 +15,9 @@ if (!$db) {
 }
 
 $dni = "12345678";
-$name = "CARLOS EDIDSON";
-$father_surname = "SANCHEZ";
-$mother_surname = "ALCALA";
+$name = "USUARIO ADMINISTRADOR";
+$father_surname = "TEMPORAL";
+$mother_surname = "PRUEBAS";
 $username = "admin";
 $password_clara = "admin123";
 
