@@ -87,8 +87,8 @@ if (!isset($usuario) || !$usuario) {
 
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Documento Nacional (DNI)</label>
-                            <div class="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 text-slate-600 font-mono font-semibold text-sm">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Documento Nacional de Identidad</label>
+                            <div class="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 text-slate-800 font-bold text-sm">
                                 <?= htmlspecialchars($usuario['dni_user']) ?>
                             </div>
                         </div>
@@ -100,13 +100,13 @@ if (!isset($usuario) || !$usuario) {
                         </div>
                         <div class="grid grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Ap. Paterno</label>
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Apellido Paterno</label>
                                 <div class="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 text-slate-800 font-bold text-sm">
                                     <?= htmlspecialchars($usuario['father_surname_user']) ?>
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Ap. Materno</label>
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Apellido Materno</label>
                                 <div class="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 text-slate-800 font-bold text-sm">
                                     <?= htmlspecialchars($usuario['mother_surname_user']) ?>
                                 </div>

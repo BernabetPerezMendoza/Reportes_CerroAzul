@@ -41,7 +41,7 @@ if (!isset($usuario) || !$usuario) {
                     <div class="bg-blue-500/20 p-2 rounded-lg">
                         <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     </div>
-                    <span class="text-xl font-bold tracking-tight text-white">Mi<span class="text-blue-400">Perfil</span></span>
+                    <span class="text-xl font-bold tracking-tight text-white">Mi<span class="text-blue-400"> Perfil</span></span>
                 </div>
                 <div class="flex items-center space-x-4">
                     <a href="index.php?action=ciudadano_dashboard" class="text-sm font-semibold text-blue-200 hover:text-white transition-colors">Volver al Panel</a>
@@ -88,8 +88,8 @@ if (!isset($usuario) || !$usuario) {
 
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Documento Nacional (DNI)</label>
-                            <div class="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 text-slate-600 font-mono font-semibold text-sm">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Documento Nacional de Identidad</label>
+                            <div class="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 text-slate-800 font-bold text-sm">
                                 <?= htmlspecialchars($usuario['dni_user']) ?>
                             </div>
                         </div>
@@ -101,13 +101,13 @@ if (!isset($usuario) || !$usuario) {
                         </div>
                         <div class="grid grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Ap. Paterno</label>
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Apellido Paterno</label>
                                 <div class="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 text-slate-800 font-bold text-sm">
                                     <?= htmlspecialchars($usuario['father_surname_user']) ?>
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Ap. Materno</label>
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Apellido Materno</label>
                                 <div class="bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 text-slate-800 font-bold text-sm">
                                     <?= htmlspecialchars($usuario['mother_surname_user']) ?>
                                 </div>

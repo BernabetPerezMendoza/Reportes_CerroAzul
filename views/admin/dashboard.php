@@ -8,7 +8,7 @@ if (!isset($usuarios)) $usuarios = [];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Administrativo - Lunahuaná</title>
+    <title>Panel Administrativo - Cerro Azul Limpio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,25 +25,25 @@ if (!isset($usuarios)) $usuarios = [];
         }
     </script>
 </head>
-<body class="bg-[#F8FAFC] min-h-screen font-sans text-slate-800 selection:bg-teal-200">
+<body class="bg-[#F8FAFC] min-h-screen font-sans text-slate-800 selection:bg-blue-200">
 
-    <nav class="bg-slate-900 text-white shadow-md sticky top-0 z-40">
+    <nav class="bg-blue-900 text-white shadow-md sticky top-0 z-40">
         <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-3">
-                    <div class="bg-teal-500/20 p-2 rounded-lg">
-                        <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    <div class="bg-blue-500/20 p-2 rounded-lg">
+                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                     </div>
-                    <span class="text-xl font-bold tracking-tight text-white">Admin<span class="text-teal-400">Center</span></span>
+                    <span class="text-xl font-bold tracking-tight text-white">Cerro Azul<span class="text-blue-400">Admin</span></span>
                 </div>
                 <div class="flex items-center space-x-4 sm:space-x-6">
                     <div class="hidden sm:flex flex-col text-right">
                         <span class="text-sm font-semibold"><?= htmlspecialchars($_SESSION['nombre'] ?? 'Administrador') ?></span>
-                        <span class="text-[10px] text-teal-400 font-medium uppercase tracking-wider">Admin</span>
+                        <span class="text-[10px] text-blue-400 font-medium uppercase tracking-wider">Admin</span>
                     </div>
                     
-                    <a href="index.php?action=admin_perfil" class="text-sm font-semibold text-teal-400 hover:text-white transition-colors">Mi Perfil</a>
-                    <div class="w-px h-6 bg-slate-700"></div>
+                    <a href="index.php?action=admin_perfil" class="text-sm font-semibold text-blue-200 hover:text-white transition-colors">Mi Perfil</a>
+                    <div class="w-px h-6 bg-blue-700/50"></div>
                     
                     <a href="index.php?action=logout" class="flex items-center gap-2 bg-red-500/10 hover:bg-red-500 hover:text-white text-red-400 px-4 py-2 rounded-lg transition-all font-medium text-sm">
                         Salir
@@ -56,7 +56,7 @@ if (!isset($usuarios)) $usuarios = [];
     <main class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
         <?php if(isset($_SESSION['success'])): ?>
-            <div class="flex items-center gap-3 bg-emerald-50 text-emerald-700 p-4 rounded-xl text-sm mb-6 shadow-sm border border-emerald-200">
+            <div class="flex items-center gap-3 bg-blue-50 text-blue-700 p-4 rounded-xl text-sm mb-6 shadow-sm border border-blue-200">
                 <?= $_SESSION['success']; unset($_SESSION['success']); ?>
             </div>
         <?php endif; ?>
@@ -77,9 +77,9 @@ if (!isset($usuarios)) $usuarios = [];
                 <p class="text-4xl font-extrabold text-amber-500 mt-2"><?= $stats['pendiente'] ?></p>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 relative overflow-hidden">
-                <div class="absolute left-0 top-0 bottom-0 w-1 bg-emerald-400"></div>
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-400"></div>
                 <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Atendidos</p>
-                <p class="text-4xl font-extrabold text-emerald-500 mt-2"><?= $stats['revisado'] ?></p>
+                <p class="text-4xl font-extrabold text-blue-600 mt-2"><?= $stats['revisado'] ?></p>
             </div>
         </div>
 
@@ -88,7 +88,7 @@ if (!isset($usuarios)) $usuarios = [];
                 <button onclick="cambiarTab('reportes')" id="btn-tab-reportes" class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg text-sm font-semibold transition-all bg-white text-slate-900 shadow-sm">Reportes</button>
                 <button onclick="cambiarTab('usuarios')" id="btn-tab-usuarios" class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg text-sm font-semibold transition-all text-slate-500 hover:text-slate-900">Usuarios</button>
             </div>
-            <button onclick="abrirModalRegistro()" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2">
+            <button onclick="abrirModalRegistro()" class="w-full sm:w-auto bg-blue-700 hover:bg-blue-800 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                 Registrar Usuario
             </button>
@@ -96,15 +96,16 @@ if (!isset($usuarios)) $usuarios = [];
 
         <div id="tab-reportes" class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden w-full">
             <?php if(empty($reportes)): ?>
-                <div class="p-16 text-center text-slate-400">Bandeja vacía. No hay incidencias registradas.</div>
+                <div class="p-16 text-center text-slate-400">Bandeja vacía. No hay incidencias registradas en Cerro Azul.</div>
             <?php else: ?>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-slate-50 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-200">
                                 <th class="p-4 sm:p-5 font-semibold w-20 sm:w-24">Evidencia</th>
-                                <th class="p-4 sm:p-5 font-semibold">Ciudadano</th>
+                                <th class="p-4 sm:p-5 font-semibold hidden md:table-cell">Ciudadano</th>
                                 <th class="p-5 font-semibold hidden md:table-cell">Detalle del Problema</th>
+                                <th class="p-4 sm:p-5 font-semibold text-center">Fecha</th>
                                 <th class="p-5 font-semibold text-center hidden md:table-cell">Estado</th>
                                 <th class="p-4 sm:p-5 font-semibold text-center">Acciones</th>
                             </tr>
@@ -117,34 +118,37 @@ if (!isset($usuarios)) $usuarios = [];
                                             <img src="public/uploads/<?= htmlspecialchars($row['foto']) ?>" class="w-full h-full object-cover">
                                         </div>
                                     </td>
-                                    <td class="p-4 sm:p-5 align-top">
+                                    <td class="p-4 sm:p-5 align-top hidden md:table-cell">
                                         <div class="font-bold text-slate-800 text-sm sm:text-base"><?= htmlspecialchars($row['name_user']) ?></div>
                                         <div class="text-slate-500 text-[10px] sm:text-xs"><?= htmlspecialchars($row['father_surname_user'] . ' ' . $row['mother_surname_user']) ?></div>
-                                        <div class="text-teal-600 text-[10px] sm:text-xs font-semibold mt-1">@<?= htmlspecialchars($row['username_user']) ?></div>
+                                        <div class="text-blue-600 text-[10px] sm:text-xs font-semibold mt-1">@<?= htmlspecialchars($row['username_user']) ?></div>
                                     </td>
                                     <td class="p-5 align-top hidden md:table-cell">
                                         <p class="line-clamp-2 text-sm leading-relaxed" title="<?= htmlspecialchars($row['descripcion']) ?>">
                                             <?= htmlspecialchars($row['descripcion']) ?>
                                         </p>
                                     </td>
+                                    <td class="p-4 sm:p-5 align-middle text-center text-xs text-slate-500 font-medium">
+                                        <?= date('d/m/Y', strtotime($row['created_at'])) ?>
+                                    </td>
                                     <td class="p-5 align-middle text-center hidden md:table-cell">
-                                        <span class="px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider <?= $row['estado'] === 'PENDIENTE' ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700' ?>">
+                                        <span class="px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider <?= $row['estado'] === 'PENDIENTE' ? 'bg-amber-100 text-amber-700' : 'bg-blue-100 text-blue-700' ?>">
                                             <?= $row['estado'] ?>
                                         </span>
                                     </td>
                                     <td class="p-4 sm:p-5 align-middle text-center">
-                                        <button onclick="verDetalles('<?= htmlspecialchars($row['foto']) ?>', '<?= htmlspecialchars(addslashes($row['descripcion'])) ?>', '<?= htmlspecialchars(addslashes($row['name_user'] . ' ' . $row['father_surname_user'])) ?>', '<?= $row['estado'] ?>', '<?= $row['created_at'] ?>', <?= $row['id'] ?>)" class="md:hidden bg-slate-100 border border-slate-200 hover:bg-slate-200 text-slate-700 w-full px-3 py-2.5 rounded-lg text-xs font-bold transition-all shadow-sm">
+                                        <button onclick="verDetalles('<?= htmlspecialchars($row['foto']) ?>', '<?= htmlspecialchars(addslashes($row['descripcion'])) ?>', '<?= htmlspecialchars(addslashes($row['name_user'] . ' ' . $row['father_surname_user'])) ?>', '<?= $row['estado'] ?>', '<?= date('d/m/Y', strtotime($row['created_at'])) ?>', <?= $row['id'] ?>)" class="md:hidden bg-slate-100 border border-slate-200 hover:bg-slate-200 text-slate-700 w-full px-3 py-2.5 rounded-lg text-xs font-bold transition-all shadow-sm">
                                             Ver Más
                                         </button>
                                         <div class="hidden md:flex justify-center gap-2">
-                                            <button onclick="verDetalles('<?= htmlspecialchars($row['foto']) ?>', '<?= htmlspecialchars(addslashes($row['descripcion'])) ?>', '<?= htmlspecialchars(addslashes($row['name_user'] . ' ' . $row['father_surname_user'])) ?>', '<?= $row['estado'] ?>', '<?= $row['created_at'] ?>', <?= $row['id'] ?>)" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-sm">
+                                            <button onclick="verDetalles('<?= htmlspecialchars($row['foto']) ?>', '<?= htmlspecialchars(addslashes($row['descripcion'])) ?>', '<?= htmlspecialchars(addslashes($row['name_user'] . ' ' . $row['father_surname_user'])) ?>', '<?= $row['estado'] ?>', '<?= date('d/m/Y', strtotime($row['created_at'])) ?>', <?= $row['id'] ?>)" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-sm">
                                                 Detalles
                                             </button>
                                             <button onclick="verImagenCompleta('<?= htmlspecialchars($row['foto']) ?>')" class="bg-indigo-50 border border-indigo-100 hover:bg-indigo-100 text-indigo-700 px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-sm">
                                                 Ver Foto
                                             </button>
                                             <?php if($row['estado'] === 'PENDIENTE'): ?>
-                                                <a href="index.php?action=revisar_reporte&id=<?= $row['id'] ?>" class="bg-teal-600 hover:bg-teal-700 text-white px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-sm">
+                                                <a href="index.php?action=revisar_reporte&id=<?= $row['id'] ?>" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-xs font-bold transition-all shadow-sm">
                                                     Atender
                                                 </a>
                                             <?php endif; ?>
@@ -174,29 +178,30 @@ if (!isset($usuarios)) $usuarios = [];
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-slate-50 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-200">
-                                <th class="p-4 sm:p-5 font-semibold">DNI</th>
+                                <th class="p-4 sm:p-5 font-semibold hidden md:table-cell">DNI</th>
                                 <th class="p-4 sm:p-5 font-semibold">Nombre Completo</th>
                                 <th class="p-5 font-semibold hidden md:table-cell">Usuario (Login)</th>
                                 <th class="p-5 font-semibold text-center hidden md:table-cell">Rol</th>
-                                <th class="p-5 font-semibold text-center hidden md:table-cell">Fecha Registro</th>
+                                <th class="p-4 sm:p-5 font-semibold text-center">Fecha Registro</th>
                                 <th class="p-4 sm:p-5 font-semibold text-center md:hidden">Acciones</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100 text-sm text-slate-600">
                             <?php foreach($usuarios as $user): ?>
                                 <tr class="hover:bg-slate-50/50 transition-colors">
-                                    <td class="p-4 sm:p-5 font-mono text-slate-500"><?= htmlspecialchars($user['dni_user']) ?></td>
+                                    <td class="p-4 sm:p-5 font-mono text-slate-500 hidden md:table-cell"><?= htmlspecialchars($user['dni_user']) ?></td>
                                     <td class="p-4 sm:p-5 font-bold text-slate-800 text-sm sm:text-base">
                                         <?= htmlspecialchars($user['name_user'] . ' ' . $user['father_surname_user'] . ' ' . $user['mother_surname_user']) ?>
                                     </td>
-                                    <td class="p-5 text-teal-600 font-semibold hidden md:table-cell">@<?= htmlspecialchars($user['username_user']) ?></td>
+                                    <td class="p-5 text-blue-600 font-semibold hidden md:table-cell">@<?= htmlspecialchars($user['username_user']) ?></td>
                                     <td class="p-5 text-center hidden md:table-cell">
                                         <span class="px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider <?= (int)$user['rol_user'] === 1 ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700' ?>">
                                             <?= (int)$user['rol_user'] === 1 ? 'Admin' : 'Ciudadano' ?>
                                         </span>
                                     </td>
-                                    <td class="p-5 text-center text-xs text-slate-400 hidden md:table-cell"><?= date('d/m/Y', strtotime($user['created_at'])) ?></td>
-                                    
+                                    <td class="p-4 sm:p-5 align-middle text-center text-xs text-slate-500 font-medium">
+                                        <?= date('d/m/Y', strtotime($user['created_at'])) ?>
+                                    </td>
                                     <td class="p-4 sm:p-5 align-middle text-center md:hidden">
                                         <button onclick="verUsuarioDetalles('<?= htmlspecialchars($user['dni_user']) ?>', '<?= htmlspecialchars(addslashes($user['name_user'] . ' ' . $user['father_surname_user'] . ' ' . $user['mother_surname_user'])) ?>', '<?= htmlspecialchars($user['username_user']) ?>', <?= (int)$user['rol_user'] ?>, '<?= date('d/m/Y', strtotime($user['created_at'])) ?>')" class="bg-slate-100 border border-slate-200 hover:bg-slate-200 text-slate-700 w-full px-3 py-2.5 rounded-lg text-xs font-bold transition-all shadow-sm">
                                             Ver Más
@@ -221,8 +226,8 @@ if (!isset($usuarios)) $usuarios = [];
                 <div>
                     <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">DNI del usuario</label>
                     <div class="flex gap-2">
-                        <input type="text" id="dni_input" name="dni" maxlength="8" required onkeyup="validarDNIExistente()" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-teal-500 outline-none text-sm transition-all font-medium">
-                        <button type="button" onclick="validarDNI()" id="btn_validar" class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm">Buscar</button>
+                        <input type="text" id="dni_input" name="dni" maxlength="8" required onkeyup="validarDNIExistente()" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition-all font-medium">
+                        <button type="button" onclick="validarDNI()" id="btn_validar" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm">Buscar</button>
                     </div>
                     <span id="dni_mensaje" class="text-xs mt-1 block hidden"></span>
                 </div>
@@ -246,16 +251,16 @@ if (!isset($usuarios)) $usuarios = [];
 
                 <div>
                     <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Nombre de Usuario (Login)</label>
-                    <input type="text" id="username_input" name="username" required onkeyup="validarUsername()" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-teal-500 outline-none text-sm transition-all font-medium">
+                    <input type="text" id="username_input" name="username" required onkeyup="validarUsername()" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition-all font-medium">
                     <span id="username_mensaje" class="text-xs mt-1 block hidden"></span>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Contraseña Inicial</label>
-                    <input type="password" name="password" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-teal-500 outline-none text-sm transition-all font-medium">
+                    <input type="password" name="password" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition-all font-medium">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Rol de Acceso</label>
-                    <select name="rol" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-teal-500 outline-none text-sm font-medium bg-white">
+                    <select name="rol" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm font-medium bg-white">
                         <option value="2">Ciudadano</option>
                         <option value="1">Administrador</option>
                     </select>
@@ -287,10 +292,10 @@ if (!isset($usuarios)) $usuarios = [];
                     <span class="text-xs text-slate-400 font-medium">Fecha: <span id="m_fecha" class="text-slate-600"></span></span>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-3 pt-2 border-t border-slate-100">
-                    <button id="m_btn_foto" class="flex-1 bg-indigo-50 border border-indigo-100 hover:bg-indigo-100 text-indigo-700 px-4 py-2.5 rounded-xl text-sm font-bold transition-all text-center">
+                    <button id="m_btn_foto" class="flex-1 bg-blue-50 border border-blue-100 hover:bg-blue-100 text-blue-700 px-4 py-2.5 rounded-xl text-sm font-bold transition-all text-center">
                         Ver Fotografía Completa
                     </button>
-                    <a id="m_btn_atender" href="" class="flex-1 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all text-center hidden">
+                    <a id="m_btn_atender" href="" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all text-center hidden">
                         Atender Reporte
                     </a>
                 </div>
@@ -314,7 +319,7 @@ if (!isset($usuarios)) $usuarios = [];
                 </div>
                 <div>
                     <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Usuario (Login)</h4>
-                    <p id="mu_username" class="text-teal-600 font-bold text-sm mt-1"></p>
+                    <p id="mu_username" class="text-blue-600 font-bold text-sm mt-1"></p>
                 </div>
                 <div class="flex justify-between items-center pt-2">
                     <div>
@@ -333,7 +338,6 @@ if (!isset($usuarios)) $usuarios = [];
     </div>
 
     <script>
-        // === TABS SYSTEM ===
         function cambiarTab(tab) {
             const btnReportes = document.getElementById('btn-tab-reportes');
             const btnUsuarios = document.getElementById('btn-tab-usuarios');
@@ -351,7 +355,6 @@ if (!isset($usuarios)) $usuarios = [];
             }
         }
 
-        // === PAGINADOR JS PARA REPORTES ===
         const reportesRows = document.querySelectorAll('.fila-reporte');
         const itemsPerPage = 10;
         let currentPage = 1;
@@ -378,7 +381,6 @@ if (!isset($usuarios)) $usuarios = [];
         }
         document.addEventListener('DOMContentLoaded', actualizarPaginador);
 
-        // === MODALES ===
         function abrirModalRegistro() { document.getElementById('modalRegistroUsuario').classList.remove('hidden'); }
         function cerrarModalRegistro() { document.getElementById('modalRegistroUsuario').classList.add('hidden'); }
         function cerrarModalDetalles() { document.getElementById('modalAdmin').classList.add('hidden'); }
@@ -395,7 +397,7 @@ if (!isset($usuarios)) $usuarios = [];
             badge.innerText = estado;
             badge.className = estado === 'PENDIENTE' 
                 ? "px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider mt-2 bg-amber-100 text-amber-700"
-                : "px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider mt-2 bg-emerald-100 text-emerald-700";
+                : "px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider mt-2 bg-blue-100 text-blue-700";
 
             document.getElementById('m_btn_foto').onclick = function() { verImagenCompleta(foto); };
             
@@ -430,15 +432,17 @@ if (!isset($usuarios)) $usuarios = [];
             document.getElementById('modalImagen').classList.remove('hidden');
         }
 
-        // === LÓGICA AJAX FORMULARIO ===
         let isDniValid = false;
         let isUsernameValid = false;
+        let dniYaRegistrado = false;
 
         function verificarBotonSubmit() {
             document.getElementById('btn_submit').disabled = !(isDniValid && isUsernameValid);
         }
 
         async function validarDNI() {
+            if (dniYaRegistrado) return;
+
             const inputDNI = document.getElementById('dni_input').value;
             const btn = document.getElementById('btn_validar');
             const mensaje = document.getElementById('dni_mensaje');
@@ -461,8 +465,8 @@ if (!isset($usuarios)) $usuarios = [];
                     document.getElementById('paterno_input').value = result.data.apellido_paterno;
                     document.getElementById('materno_input').value = result.data.apellido_materno;
                     camposNombres.classList.remove('hidden');
-                    mensaje.innerText = "✓ Identidad verificada con éxito";
-                    mensaje.className = "text-[10px] mt-1 block text-emerald-600 font-bold uppercase tracking-wide";
+                    mensaje.innerText = "✓ Identidad verificada con éxito en RENIEC";
+                    mensaje.className = "text-[10px] mt-1 block text-blue-600 font-bold uppercase tracking-wide";
                     isDniValid = true;
                 } else {
                     mensaje.innerText = "❌ " + result.message;
@@ -473,6 +477,57 @@ if (!isset($usuarios)) $usuarios = [];
                 mensaje.className = "text-xs mt-1 block text-red-600";
             }
             btn.innerText = "Buscar"; btn.disabled = false; verificarBotonSubmit();
+        }
+
+        let timeoutDNI = null;
+        async function validarDNIExistente() {
+            const inputDNI = document.getElementById('dni_input').value.trim();
+            const mensaje = document.getElementById('dni_mensaje');
+            const inputField = document.getElementById('dni_input');
+            const btnValidar = document.getElementById('btn_validar');
+            
+            clearTimeout(timeoutDNI);
+            isDniValid = false; 
+            dniYaRegistrado = false;
+            verificarBotonSubmit();
+
+            if (inputDNI.length !== 8) {
+                mensaje.classList.add('hidden');
+                inputField.classList.remove('border-red-500', 'border-blue-500');
+                btnValidar.disabled = false;
+                btnValidar.classList.remove('opacity-50', 'cursor-not-allowed');
+                return;
+            }
+
+            timeoutDNI = setTimeout(async () => {
+                try {
+                    const response = await fetch('index.php?action=verificar_dni_existente&dni=' + encodeURIComponent(inputDNI));
+                    const result = await response.json();
+                    mensaje.classList.remove('hidden');
+                    
+                    if (result.existe) {
+                        mensaje.innerText = "❌ Este DNI ya está registrado.";
+                        mensaje.className = "text-[10px] mt-1 block text-red-600 font-bold uppercase tracking-wide";
+                        inputField.classList.add('border-red-500');
+                        inputField.classList.remove('border-blue-500');
+                        
+                        btnValidar.disabled = true;
+                        btnValidar.classList.add('opacity-50', 'cursor-not-allowed');
+                        dniYaRegistrado = true;
+                        isDniValid = false;
+                    } else {
+                        mensaje.innerText = "✓ DNI disponible (Haz clic en 'Buscar' para validar)";
+                        mensaje.className = "text-[10px] mt-1 block text-blue-600 font-bold uppercase tracking-wide";
+                        inputField.classList.add('border-blue-500');
+                        inputField.classList.remove('border-red-500');
+                        
+                        btnValidar.disabled = false;
+                        btnValidar.classList.remove('opacity-50', 'cursor-not-allowed');
+                        dniYaRegistrado = false;
+                    }
+                    verificarBotonSubmit();
+                } catch (error) {}
+            }, 500);
         }
 
         let timeoutUsername = null;
@@ -486,7 +541,7 @@ if (!isset($usuarios)) $usuarios = [];
 
             if (inputUsername.length === 0) {
                 mensaje.classList.add('hidden');
-                inputField.classList.remove('border-red-500', 'border-emerald-500');
+                inputField.classList.remove('border-red-500', 'border-blue-500');
                 return;
             }
 
@@ -499,51 +554,14 @@ if (!isset($usuarios)) $usuarios = [];
                         mensaje.innerText = "❌ Este usuario ya existe, elige otro.";
                         mensaje.className = "text-[10px] mt-1 block text-red-600 font-bold uppercase tracking-wide";
                         inputField.classList.add('border-red-500');
-                        inputField.classList.remove('border-emerald-500');
+                        inputField.classList.remove('border-blue-500');
                         isUsernameValid = false;
                     } else {
                         mensaje.innerText = "✓ Usuario disponible";
-                        mensaje.className = "text-[10px] mt-1 block text-emerald-600 font-bold uppercase tracking-wide";
-                        inputField.classList.add('border-emerald-500');
+                        mensaje.className = "text-[10px] mt-1 block text-blue-600 font-bold uppercase tracking-wide";
+                        inputField.classList.add('border-blue-500');
                         inputField.classList.remove('border-red-500');
                         isUsernameValid = true;
-                    }
-                    verificarBotonSubmit();
-                } catch (error) {}
-            }, 500);
-        }
-        
-        let timeoutDNI = null;
-        async function validarDNIExistente() {
-            const inputDNI = document.getElementById('dni_input').value.trim();
-            const mensaje = document.getElementById('dni_mensaje');
-            const inputField = document.getElementById('dni_input');
-            
-            clearTimeout(timeoutDNI);
-            isDniValid = false; verificarBotonSubmit();
-
-            if (inputDNI.length !== 8) {
-                mensaje.classList.add('hidden');
-                inputField.classList.remove('border-red-500', 'border-emerald-500');
-                return;
-            }
-
-            timeoutDNI = setTimeout(async () => {
-                try {
-                    const response = await fetch('index.php?action=verificar_dni_existente&dni=' + encodeURIComponent(inputDNI));
-                    const result = await response.json();
-                    mensaje.classList.remove('hidden');
-                    if (result.existe) {
-                        mensaje.innerText = "❌ Este DNI ya está registrado.";
-                        mensaje.className = "text-[10px] mt-1 block text-red-600 font-bold uppercase tracking-wide";
-                        inputField.classList.add('border-red-500');
-                        inputField.classList.remove('border-emerald-500');
-                        isDniValid = false;
-                    } else {
-                        mensaje.innerText = "✓ DNI disponible (Requiere buscar para validar RENIEC)";
-                        mensaje.className = "text-[10px] mt-1 block text-emerald-600 font-bold uppercase tracking-wide";
-                        inputField.classList.add('border-emerald-500');
-                        inputField.classList.remove('border-red-500');
                     }
                     verificarBotonSubmit();
                 } catch (error) {}

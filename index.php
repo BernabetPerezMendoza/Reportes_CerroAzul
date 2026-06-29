@@ -150,7 +150,6 @@ switch ($action) {
         exit;
 
     case 'consultar_dni_ajax':
-        verificarAutenticado();
         header('Content-Type: application/json');
         
         $dni = trim($_GET['dni'] ?? '');
@@ -167,7 +166,6 @@ switch ($action) {
         exit;
 
     case 'verificar_username_ajax':
-        verificarAutenticado();
         header('Content-Type: application/json');
         
         $username = trim($_GET['username'] ?? '');
@@ -182,7 +180,6 @@ switch ($action) {
         exit;
 
     case 'verificar_dni_existente':
-        verificarAutenticado();
         header('Content-Type: application/json');
         
         $dni = trim($_GET['dni'] ?? '');
